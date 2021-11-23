@@ -1,0 +1,168 @@
+SQlbolt latihan query SQL
+ORM = Object Relational Mapping
+
+
+auto increment = id otomatis
+not null = tidak boleh kosong
+PK = 
+FK =
+
+ade-ThinkPad-T450s% sudo mysql -u root   
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE USER 'gusti'@'localhost' IDENTIFIED WITH mysql_native_password BY'12345';
+Query OK, 0 rows affected (0,28 sec)
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'gusti'@'localhost' WITH GRANT OPTION;
+Query OK, 0 rows affected (0,09 sec)
+
+
+mysql> CREATE DATABASE sales;
+Query OK, 1 row affected (0,12 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sales              |
+| sys                |
++--------------------+
+5 rows in set (0,03 sec)
+
+mysql> USE sales
+Database changed
+mysql> CREATE TABLE suppliers( id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225) NOT NULL);
+Query OK, 0 rows affected (0,67 sec)
+
+mysql> CREATE TABLE goods(id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225) NOT NULL, price DECIMAL NOT NULL, id_supplier BIGINT UNSIGNED NOT NULL, FOREIGN KEY (id_supplier) REFERENCES suppliers(id));
+Query OK, 0 rows affected (0,58 sec)
+
+mysql> CREATE TABLE customers(id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL);
+Query OK, 0 rows affected (1,11 sec)
+
+mysql> CREATE TABLE transactions(id BIGINT UNSIGNED auto_increment NOT NULL PRIMARY KEY, id_good BIGNINT UNSIGNED NOT NULL, id_customer BIGINT UNSIGNED NOT NULL, FOREIGN KEY (id_good) REFERENCES goods(id), FOREIGN KEY (id_customer) REFERENCES customers(id), time DATETIME DEFAULT now() NOT NULL, quantity INT NOT NULL, total DECIMAL NOT NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGNINT UNSIGNED NOT NULL, id_customer BIGINT UNSIGNED NOT NULL, FOREIGN KEY (id' at line 1
+mysql> CREATE TABLE transactions(id BIGINT UNSIGNED auto_increment NOT NULL PRIMARY KEY, id_good BIGINT UNSIGNED NOT NULL, id_customer BIGINT UNSIGNED NOT NULL, FOREIGN KEY (id_good) REFERENCES goods(id), FOREIGN KEY (id_customer) REFERENCES customers(id), time DATETIME DEFAULT now() NOT NULL, quantity INT NOT NULL, total DECIMAL NOT NULL);
+Query OK, 0 rows affected (1,63 sec)
+
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++-----------------+
+| Tables_in_sales |
++-----------------+
+| customers       |
+| goods           |
+| suppliers       |
+| transactions    |
++-----------------+
+4 rows in set (0,00 sec)
+
+mysql> SELECT*FROM customers;
+Empty set (0,02 sec)
+
+mysql> INSERT INTO customers(name) VALUES ("gusti"), ("hardi"), ("fajar"), ("adi"), ("nanda");
+Query OK, 5 rows affected (0,13 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM customers;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | gusti |
+|  2 | hardi |
+|  3 | fajar |
+|  4 | adi   |
+|  5 | nanda |
++----+-------+
+5 rows in set (0,00 sec)
+
+mysql> INSERT INTO suppliers(name) VALUES ("Umam"), ("syafa"), ("falah"), ("dhea"), ("anggun"), ("agif");
+Query OK, 6 rows affected (0,18 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO goods(name, price, id_supplier) VALUES ("Pepsodent", 14500, 1), ("Lifeboy", 24600, 2), ("Clear", 44500, 3);
+Query OK, 3 rows affected (0,09 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO transactions(id_good, id_customer, quantity, total) VALUES (1,1,1,14500), (2,2,2,49200), (3,3,3,133500);
+Query OK, 3 rows affected (0,12 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+=======================
+DROP TABLE transactions
+=======================
+
+mysql> UPDATE customers SET name="tommy" where id=1;
+Query OK, 1 row affected (0,13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from customers;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | tommy |
+|  2 | hardi |
+|  3 | fajar |
+|  4 | adi   |
+|  5 | nanda |
++----+-------+
+5 rows in set (0,00 sec)
+
+mysql> SELECT * FROM goods g LIMIT 2;
++----+-----------+-------+-------------+
+| id | name      | price | id_supplier |
++----+-----------+-------+-------------+
+|  1 | Pepsodent | 14500 |           1 |
+|  2 | Lifeboy   | 24600 |           2 |
++----+-----------+-------+-------------+
+2 rows in set (0,00 sec)
+
+mysql> SELECT t.id, g.name as good, g.price as price, c.name as customer, t.time, t.quantity, t.total, s.name as suppliers 
+    -> FROM transactions t 
+    -> JOIN goods g ON t.id_good = g.id
+    -> JOIN customers c ON t.id_customer = c.id
+    -> JOIN suppliers s ON g.id_supplier = s.id
+    -> ORDER BY t.id
+    -> ;
++----+-----------+-------+----------+---------------------+----------+--------+-----------+
+| id | good      | price | customer | time                | quantity | total  | suppliers |
++----+-----------+-------+----------+---------------------+----------+--------+-----------+
+|  1 | Pepsodent | 14500 | tommy    | 2021-10-25 11:45:04 |        1 |  14500 | Umam      |
+|  2 | Lifeboy   | 24600 | hardi    | 2021-10-25 11:45:04 |        2 |  49200 | syafa     |
+|  3 | Clear     | 44500 | fajar    | 2021-10-25 11:45:04 |        3 | 133500 | falah     |
++----+-----------+-------+----------+---------------------+----------+--------+-----------+
+3 rows in set (0,01 sec)
+
+mysql> SELECT user FROM mysql.user;
++------------------+
+| user             |
++------------------+
+| gusti            |
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| root             |
++------------------+
+5 rows in set (0,00 sec)
+
+mysql> 
+
+
+
+
+
+

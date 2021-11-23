@@ -1,0 +1,22 @@
+image: node:16.x
+
+stages:
+  - test
+  - production
+
+test:
+  stage: test
+  script:
+    - npm install
+    - "npm test"
+
+production:
+  type: deploy
+  stage: production
+  image: ruby:3
+  script:
+    #- apt install gem
+    - apt install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+  only:
+    - production

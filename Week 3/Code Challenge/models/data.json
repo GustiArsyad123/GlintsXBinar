@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "carName": "Brio",
+      "carType": "Honda",
+      "Price": "Rp 100.000.000"
+    },
+    {
+        "id": 2,
+        "carName": "Fortuner",
+        "carType": "Toyota",
+        "Price": "Rp 150.000.000"
+      },
+      {
+        "id": 3,
+        "carName": "Xenia",
+        "carType": "Daihatsu",
+        "Price": "Rp 100.000.000"
+      }
+  ]
+  

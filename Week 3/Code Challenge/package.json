@@ -1,0 +1,20 @@
+{
+  "name": "code-challenge",
+  "version": "1.0.0",
+  "description": "code challenge week 3",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "test": "econpx nodemon index \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gusti Arsyad",
+  "license": "MIT",
+  "dependencies": {
+      
+  },
+  "devDependencies": {
+      "nodemon": "^2.0.14",
+      "express": "^4.17.1"
+    
+  }
+}

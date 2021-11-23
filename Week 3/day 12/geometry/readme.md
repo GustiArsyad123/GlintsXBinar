@@ -1,0 +1,1 @@
+these material on day 12, learn about Inheritance inheritance (pewarisan) 

@@ -1,0 +1,26 @@
+Gusti Arsyad
+suriv27121994@gmail.com
+
+https://replit.com/@Najib13/convertStringToArray#index.js
+
+pickupp
+
+-----------------
+
+function reverseWords(str){
+
+  return str.split(" ").reverse().join(" ");
+  //or
+// let splitString = str.split(' ');
+// let reverseKata = splitString.reverse();
+// let joinKata = reverseKata.join(' ');
+
+// return joinKata
+}
+
+// "The greatest victory is that which requires no battle" --> "battle no requires which that is victory greatest The"
+
+const str = 'nama saya adalah Gusti'
+console.log(reverseWords(str))
+
+// "Gusti adalah saya nama"

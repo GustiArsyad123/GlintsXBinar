@@ -1,0 +1,76 @@
+ade-ThinkPad-T450s% npm install --save express mongodb validator dotenv
+npm WARN saveError ENOENT: no such file or directory, open '/home/gustiarsyad/Documents/Gusti Arsyad baeng/Gusti Arsyad/glintsxbinar-1/Week 5/day 22/package.json'
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN enoent ENOENT: no such file or directory, open '/home/gustiarsyad/Documents/Gusti Arsyad baeng/Gusti Arsyad/glintsxbinar-1/Week 5/day 22/package.json'
+npm WARN day 22 No description
+npm WARN day 22 No repository field.
+npm WARN day 22 No README data
+npm WARN day 22 No license field.
+
++ express@4.17.1
++ validator@13.7.0
++ mongodb@4.1.3
++ dotenv@10.0.0
+added 69 packages from 94 contributors and audited 69 packages in 12.853s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+ade-ThinkPad-T450s% npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (day-22) 
+version: (1.0.0) 
+description: CRUD using noSQL MongoDB
+entry point: (index.js) 
+test command: 
+git repository: 
+keywords: 
+author: Gusti Arsyad
+license: (ISC) MIT
+About to write to /home/gustiarsyad/Documents/Gusti Arsyad baeng/Gusti Arsyad/glintsxbinar-1/Week 5/day 22/package.json:
+
+{
+  "name": "day-22",
+  "version": "1.0.0",
+  "description": "CRUD using noSQL MongoDB",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.3",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gusti Arsyad",
+  "license": "MIT"
+}
+
+
+Is this OK? (yes) 
+
+
+   ╭───────────────────────────────────────────────────────────────╮
+   │                                                               │
+   │      New major version of npm available! 6.14.15 → 8.1.2      │
+   │   Changelog: https://github.com/npm/cli/releases/tag/v8.1.2   │
+   │               Run npm install -g npm to update!               │
+   │                                                               │
+   ╰───────────────────────────────────────────────────────────────╯
+
+ade-ThinkPad-T450s% 
+
+noSQl dipakai untuk 

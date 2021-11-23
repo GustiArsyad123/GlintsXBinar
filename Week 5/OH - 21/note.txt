@@ -1,0 +1,13 @@
+many = terletak forigen key.
+1 orang/customer bisa banyak transaksi
+table (goods)barang 
+many to many = gabungan dari 2 one to many
+
+foregin key nampung di satu tabel maka many to many
+contoh tabel customer dn goods
+
+belongsTo = ada foregin key dari tabel sebelumnya
+ex. id_cutomer, id_good
+
+relasi tabel ada di model 
+

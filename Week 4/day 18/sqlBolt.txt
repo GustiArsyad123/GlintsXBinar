@@ -1,0 +1,4 @@
+SELECT Director FROM movies;
+
+SELECT Title FROM movies; //movies nama tables
+
